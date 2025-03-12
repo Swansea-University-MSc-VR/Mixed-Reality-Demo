@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<QCARInfo>
+    <TargetSet version="3.4">
+        <AreaTarget version="5.2" bbox="-8.4432 -2.8075 -22.0730 9.0284 4.0870 14.2984" area="50" targetId="53aa15dc3a774b6f9c8bee744903c007" name="FestoFullScan" pathAuthoring="53aa15dc3a774b6f9c8bee744903c007_authoring.glb" pathOcclusion="53aa15dc3a774b6f9c8bee744903c007_occlusion.3dt" pathNavMesh="53aa15dc3a774b6f9c8bee744903c007_navmesh.glb" cloudTarget="false" />
+    </TargetSet>
+</QCARInfo>
