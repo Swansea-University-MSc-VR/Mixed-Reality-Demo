@@ -14,6 +14,7 @@ public class AlignModel : MonoBehaviour
 
     public GameObject alignmentObject;
     public ARPlaneManager m_ARPlaneManager;
+    public GameObject aR_UI;
 
     public InputActionReference rotateAction;
     public GameObject turnProviders;
@@ -33,6 +34,10 @@ public class AlignModel : MonoBehaviour
 
         _grabInteractable.selectEntered.AddListener(OnSelectEntered);
         _grabInteractable.selectExited.AddListener(OnSelectExited);
+
+        _grabInteractable.activated.AddListener(OnActivated);
+        _grabInteractable.deactivated.AddListener(OnDeactivated);
+
     }
 
     public void OnClickAlignModel()
@@ -90,7 +95,9 @@ public class AlignModel : MonoBehaviour
 
     public void OnClickReset()
     {
-        //
+        aR_UI.SetActive(false);
+        alignmentObject.SetActive(false);
+        alignmentObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void Update()
@@ -111,5 +118,24 @@ public class AlignModel : MonoBehaviour
     private void OnSelectExited(SelectExitEventArgs args)
     {
         turnProviders.SetActive(true);
+    }
+    private void OnDeactivated(DeactivateEventArgs arg0)
+    {
+        aR_UI.transform.SetPositionAndRotation(alignmentObject.transform.position, alignmentObject.transform.rotation);
+        aR_UI.SetActive(true);
+        alignmentObject.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    private void OnActivated(ActivateEventArgs arg0)
+    {
+        // do nothing for now
+    }
+
+    private void OnDestroy()
+    {
+        _grabInteractable.selectEntered.RemoveListener(OnSelectEntered);
+        _grabInteractable.selectExited.RemoveListener(OnSelectExited);
+        _grabInteractable.activated.RemoveListener(OnActivated);
+        _grabInteractable.deactivated.RemoveListener(OnDeactivated);
     }
 }
